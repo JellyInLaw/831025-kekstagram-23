@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
-* Студент: [Максим Шашурин](https://up.htmlacademy.ru/javascript/23/user/831025).
-* Наставник: `Неизвестно`.
+- Студент: [Максим Шашурин](https://up.htmlacademy.ru/javascript/23/user/831025).
+- Наставник: [Никита Сигов](https://htmlacademy.ru/profile/crazer).
 
 ---
 
