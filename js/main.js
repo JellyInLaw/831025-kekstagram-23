@@ -43,10 +43,9 @@ const NAMES = [
 const DESCRIPTION = ['Машина','Футболка','Яблоко'];
 
 const countComments = 25;
-let idPhotoDescription = 0;
 
-function getPhotoURL () {
-  return `photos/${ idPhotoDescription  }.jpg`;
+function getPhotoURL (index) {
+  return `photos/${ index + 1 }.jpg`;
 }
 
 function getCommentId (number) {
@@ -65,15 +64,15 @@ function getName (){
   return NAMES[getRandomIntInclusive(0,NAMES.length - 1)];
 }
 
-const createPhotoDescription = () => (
+const createPhotoDescription = (index) => (
   {
-    id:idPhotoDescription++,
-    url: getPhotoURL(),
+    id:index,
+    url: getPhotoURL(index),
     description:DESCRIPTION[getRandomIntInclusive(0,DESCRIPTION.length - 1)],
     likes:getRandomIntInclusive(15,200),
     comments:[
       {
-        id:getCommentId(idPhotoDescription),
+        id:getCommentId(index),
         avatar:getAvatarURL(),
         message:getMessage(),
         name:getName(),
@@ -82,6 +81,8 @@ const createPhotoDescription = () => (
   }
 );
 
-const photoDescriptions = new Array(countComments).fill(null).map(()=> createPhotoDescription());
+const photoDescriptions = new Array(countComments).fill(null).map(
+  (currElement,index) => createPhotoDescription(index),
+);
 
 photoDescriptions.length;//для прохождения проверки npm test
