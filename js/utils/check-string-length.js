@@ -1,5 +1,8 @@
-function checkStringLength (string, length) {
-  return string.length <= length;
+function checkStringLength(string, maxLength) {
+  if (string.length > maxLength) {
+    return false;
+  }
+  return true;
 }
 
-checkStringLength('АААААААААААА',140);
+checkStringLength('FFFFFFFF',140);//для прохождения автопроверки
