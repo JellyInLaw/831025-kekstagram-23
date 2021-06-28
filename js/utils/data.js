@@ -47,26 +47,37 @@ function getName (){
   return NAMES[getRandomIntInclusive(0,NAMES.length - 1)];
 }
 
+function getComment (index){
+  const comment = {
+    id:getCommentId(index),
+    avatar:getAvatarURL(),
+    message:getMessage(),
+    name: getName(),
+  };
+  return comment;
+}
+
+function getComments (index) {
+  const comments = [];
+  comments.length = getRandomIntInclusive(1,10);
+  for (let jindex = 0 ; jindex < comments.length ; jindex ++ ){
+    comments[jindex] = getComment(index + getRandomIntInclusive(1,100000));
+  }
+  return comments;
+}
+
 const createPhotoDescription = (index) => (
   {
     id:index,
     url: getPhotoURL(index),
     description:DESCRIPTION[getRandomIntInclusive(0,DESCRIPTION.length - 1)],
     likes:getRandomIntInclusive(15,200),
-    comments:[
-      {
-        id:getCommentId(index),
-        avatar:getAvatarURL(),
-        message:getMessage(),
-        name:getName(),
-      },
-    ],
+    comments:getComments(index),
   }
 );
 
 const photoDescriptions = new Array(countComments).fill(null).map(
   (currElement,index) => createPhotoDescription(index),
 );
-
 
 export {photoDescriptions};
