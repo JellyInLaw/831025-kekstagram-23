@@ -68,4 +68,5 @@ const photoDescriptions = new Array(countComments).fill(null).map(
   (currElement,index) => createPhotoDescription(index),
 );
 
+
 export {photoDescriptions};
