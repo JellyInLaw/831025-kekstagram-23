@@ -3,7 +3,7 @@ import { photoDescriptions } from './data.js';
 const pictures = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');
 const closeButton = bigPicture.querySelector('.big-picture__cancel');
-const picturesCollection = document.querySelectorAll('.picture');
+const picturesColl = document.querySelectorAll('.picture');
 
 const noLink = function (evt){
   evt.preventDefault();
@@ -34,9 +34,9 @@ pictures.addEventListener('click',(picture)=>{
     bigPicture.querySelector('.comments-loader').classList.add('hidden');
 
     // заполняет URL
-    const arrPictureCollection = Array.from(picturesCollection);
+    const arrPictureColl = Array.from(picturesColl);
     const link = picture.target.parentNode;
-    const index = arrPictureCollection.indexOf(link);
+    const index = arrPictureColl.indexOf(link);
     const childNodes = bigPicture.querySelector('.big-picture__img').children[0];
     childNodes.src = photoDescriptions[index].url;
 
@@ -49,11 +49,14 @@ pictures.addEventListener('click',(picture)=>{
     countLikes.textContent = photoDescriptions[index].likes;
 
     // заполняет колличество комментариев
-    const countComments = bigPicture.querySelector('.comments-count');
-    countComments.textContent = photoDescriptions[index].comments.length;
-    const countCommentsContaint = bigPicture.querySelector('.social__comment-count');
-    countCommentsContaint.textContent =
-    `${photoDescriptions[index].comments.length  } из ${  countComments.textContent}`;
+    // const countComments = bigPicture.querySelector('.comments-count');
+    // countComments.textContent = photoDescriptions[index].comments.length;
+
+    // или так, не разобрался как надо именно
+    const countComments = bigPicture.querySelector('.social__comment-count');
+    countComments.textContent = '';
+    countComments.textContent = `${photoDescriptions[index].comments.length  } из ${  photoDescriptions[index].comments.length}`;
+
 
     // создает и выводит новые комментарии
     const commentsList = bigPicture.querySelector('.social__comments');
