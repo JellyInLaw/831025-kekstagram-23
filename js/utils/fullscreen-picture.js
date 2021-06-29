@@ -21,8 +21,8 @@ pictures.addEventListener('click',(picture)=>{
     body.classList.remove('modal-open');
   };
 
-  if (picture.target.nodeName !== 'A') {
-
+  if (picture.target.nodeName === 'IMG') {
+    console.log(picture.target.nodeName);
     bigPicture.classList.remove('hidden');
 
     body.classList.add('modal-open');
