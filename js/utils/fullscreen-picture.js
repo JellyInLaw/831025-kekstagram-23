@@ -6,7 +6,9 @@ const closeButton = bigPicture.querySelector('.big-picture__cancel');
 const picturesColl = document.querySelectorAll('.picture');
 
 const noLink = function (evt){
-  evt.preventDefault();
+  if (evt.target.nodeName === 'IMG') {
+    evt.preventDefault();
+  }
 };
 
 pictures.addEventListener('click',noLink);
