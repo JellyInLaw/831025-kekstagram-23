@@ -1,47 +1,57 @@
 import { photoDescriptions } from './data.js';
 
+const body = document.body;
 const pictures = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');
 const closeButton = bigPicture.querySelector('.big-picture__cancel');
-const picturesColl = document.querySelectorAll('.picture');
+const picturesCollection = document.querySelectorAll('.picture');
 
-const noLink = function (evt){
-  if (evt.target.nodeName === 'IMG') {
+const cancelTrancition = function (evt) {
+  if (evt.target.matches('IMG')) {
     evt.preventDefault();
   }
 };
 
-pictures.addEventListener('click',noLink);
+const closeButtonHandler = function  () {
+  bigPicture.classList.add('hidden');
+  body.classList.remove('modal-open');
+  closeButton.removeEventListener('click',closeButtonHandler);
+};
 
-// открывает просмотр фотографии
-pictures.addEventListener('click',(picture)=>{
-
-  const body = document.body;
-
-  const closeButtonHandler = function  () {
+const closeButtonHandlerEscape = function (pressEsc) {
+  if (pressEsc.keyCode === 27) {
+    pressEsc.preventDefault();
     bigPicture.classList.add('hidden');
     body.classList.remove('modal-open');
-  };
+    document.removeEventListener('keydown', closeButtonHandlerEscape);
+  }
+};
 
-  if (picture.target.nodeName === 'IMG') {
+pictures.addEventListener('click',cancelTrancition);
+
+// открывает просмотр фотографии
+pictures.addEventListener('click',(picture) => {
+
+  if (picture.target.matches('IMG')) {
     bigPicture.classList.remove('hidden');
 
     body.classList.add('modal-open');
 
     closeButton.addEventListener('click',closeButtonHandler);
+    document.addEventListener('keydown', closeButtonHandlerEscape);
 
     // прячет блоки счётчика комментариев и загрузки новых комментариев
     bigPicture.querySelector('.social__comment-count').classList.add('hidden');
     bigPicture.querySelector('.comments-loader').classList.add('hidden');
 
     // заполняет URL
-    const arrPictureColl = Array.from(picturesColl);
+    const arrPictureColl = Array.from(picturesCollection);
     const link = picture.target.parentNode;
     const index = arrPictureColl.indexOf(link);
     const childNodes = bigPicture.querySelector('.big-picture__img').children[0];
     childNodes.src = photoDescriptions[index].url;
 
-    //подписывает описнаие фотографии
+    //подписывает описание фотографии
     const socialCaption = bigPicture.querySelector('.social__caption');
     socialCaption.textContent = photoDescriptions[index].description;
 
@@ -63,6 +73,7 @@ pictures.addEventListener('click',(picture)=>{
     const commentsList = bigPicture.querySelector('.social__comments');
     commentsList.textContent = '';
     const newCommentList = photoDescriptions[index].comments;
+
     newCommentList.forEach((element,jindex) => {
       const newElement = document.createElement('li');
       newElement.classList.add('social__comment');
@@ -81,14 +92,6 @@ pictures.addEventListener('click',(picture)=>{
       newElement.appendChild(newImg);
       newElement.appendChild(newCommentText);
       commentsList.appendChild(newElement);
-    });
-
-    document.addEventListener('keydown', (pressEsc) => {
-      if (pressEsc.keyCode === 27) {
-        pressEsc.preventDefault();
-        bigPicture.classList.add('hidden');
-        body.classList.remove('modal-open');
-      }
     });
   }
 });

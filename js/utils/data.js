@@ -23,7 +23,7 @@ const NAMES = [
   'Денис',
 ];
 
-const DESCRIPTION = ['Машина','Футболка','Яблоко'];
+const DESCRIPTION = ['Машина','Футболка','Яблоко','Закат','Просто красота'];
 
 const countComments = 25;
 
