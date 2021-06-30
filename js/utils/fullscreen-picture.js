@@ -6,7 +6,9 @@ const closeButton = bigPicture.querySelector('.big-picture__cancel');
 const picturesColl = document.querySelectorAll('.picture');
 
 const noLink = function (evt){
-  evt.preventDefault();
+  if (evt.target.nodeName === 'IMG') {
+    evt.preventDefault();
+  }
 };
 
 pictures.addEventListener('click',noLink);
@@ -82,7 +84,7 @@ pictures.addEventListener('click',(picture)=>{
     });
 
     document.addEventListener('keydown', (pressEsc) => {
-      if(pressEsc.keyCode === 27) {
+      if (pressEsc.keyCode === 27) {
         pressEsc.preventDefault();
         bigPicture.classList.add('hidden');
         body.classList.remove('modal-open');
