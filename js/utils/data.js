@@ -63,6 +63,11 @@ function getComments (index) {
   for (let jindex = 0 ; jindex < comments.length ; jindex ++ ){
     comments[jindex] = getComment(index + getRandomIntInclusive(1,100000));
   }
+
+  //не работает почему то
+  // comments.forEach(()=> {
+  //   getComment(index + getRandomIntInclusive(1,100000));
+  // });
   return comments;
 }
 
