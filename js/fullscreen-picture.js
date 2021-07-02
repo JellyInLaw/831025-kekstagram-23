@@ -1,4 +1,4 @@
-import { photoDescriptions } from './data.js';
+import { photoDescriptions } from './utils/data.js';
 
 const body = document.body;
 const pictures = document.querySelector('.pictures');

@@ -1,4 +1,4 @@
-import {photoDescriptions} from './data.js';
+import {photoDescriptions} from './utils/data.js';
 
 const pictures = document.querySelector('.pictures');
 const fragment = document.createDocumentFragment();

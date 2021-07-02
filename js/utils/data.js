@@ -64,10 +64,13 @@ function getComments (index) {
     comments[jindex] = getComment(index + getRandomIntInclusive(1,100000));
   }
 
-  //не работает почему то
-  // comments.forEach(()=> {
-  //   getComment(index + getRandomIntInclusive(1,100000));
-  // });
+  // тоже не работает почему то
+  // const comments = new Array(getRandomIntInclusive(1,10)).fill(null).map(
+  //   (element,jindex) => {
+  //     getComment(jindex + getRandomIntInclusive(1,100000));
+  //   },
+  // );
+
   return comments;
 }
 
