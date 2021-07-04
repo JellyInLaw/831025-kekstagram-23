@@ -22,24 +22,6 @@ const isActiveElement = function () {
   return true;
 };
 
-const closeImgUpload = function () {
-  imgUploadOverlay.classList.add('hidden');
-  body.classList.remove('modal-open');
-  imgUploadClose.removeEventListener('click',closeImgUpload);
-  resetInputValue();
-};
-
-const pressEsc = function (evt) {
-  if (isEsc(evt) && isActiveElement()) {
-    evt.preventDefault();
-    imgUploadOverlay.classList.add('hidden');
-    body.classList.remove('modal-open');
-    imgUploadClose.removeEventListener('click',closeImgUpload);
-    document.removeEventListener('keydown',pressEsc);
-    resetInputValue();
-  }
-};
-
 const validateHashtag = function () {
   const hashtags = textHashtags.value.split(' ');
   const re = /^#[A-Za-zА-Яа-я0-9]{1,19}$/;
@@ -63,13 +45,33 @@ const validateHashtag = function () {
   textHashtags.setCustomValidity(errors.join('. \n'));
 };
 
+const closeImgUpload = function () {
+  imgUploadOverlay.classList.add('hidden');
+  body.classList.remove('modal-open');
+  imgUploadClose.removeEventListener('click',closeImgUpload);
+  textHashtags.removeEventListener('input',validateHashtag);
+  resetInputValue();
+};
+
+const pressEsc = function (evt) {
+  if (isEsc(evt) && isActiveElement()) {
+    evt.preventDefault();
+    imgUploadOverlay.classList.add('hidden');
+    body.classList.remove('modal-open');
+    imgUploadClose.removeEventListener('click',closeImgUpload);
+    document.removeEventListener('keydown',pressEsc);
+    textHashtags.removeEventListener('input',validateHashtag);
+    resetInputValue();
+  }
+};
+
 const openUploadForm = function () {
   imgUploadOverlay.classList.remove('hidden');
   body.classList.add('modal-open');
   imgUploadClose.addEventListener('click',closeImgUpload);
   document.addEventListener('keydown',pressEsc);
+  textHashtags.addEventListener('input',validateHashtag);
 };
 
 uploadInput.addEventListener('change',openUploadForm);
-textHashtags.addEventListener('input',validateHashtag);
 
