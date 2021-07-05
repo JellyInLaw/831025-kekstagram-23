@@ -1,4 +1,5 @@
-import { photoDescriptions } from './data.js';
+import { photoDescriptions } from './utils/data.js';
+import {isEsc} from './utils/is-esc.js';
 
 const body = document.body;
 const pictures = document.querySelector('.pictures');
@@ -7,7 +8,7 @@ const closeButton = bigPicture.querySelector('.big-picture__cancel');
 const picturesCollection = document.querySelectorAll('.picture');
 
 const cancelTrancition = function (evt) {
-  if (evt.target.matches('IMG')) {
+  if (evt.target.classList.contains('picture__img')) {
     evt.preventDefault();
   }
 };
@@ -18,9 +19,9 @@ const closeButtonHandler = function  () {
   closeButton.removeEventListener('click',closeButtonHandler);
 };
 
-const closeButtonHandlerEscape = function (pressEsc) {
-  if (pressEsc.keyCode === 27) {
-    pressEsc.preventDefault();
+const closeButtonHandlerEscape = function (evt) {
+  if (isEsc(evt)) {
+    evt.preventDefault();
     bigPicture.classList.add('hidden');
     body.classList.remove('modal-open');
     document.removeEventListener('keydown', closeButtonHandlerEscape);
@@ -32,7 +33,7 @@ pictures.addEventListener('click',cancelTrancition);
 // открывает просмотр фотографии
 pictures.addEventListener('click',(picture) => {
 
-  if (picture.target.matches('IMG')) {
+  if (picture.target.classList.contains('picture__img')) {
     bigPicture.classList.remove('hidden');
 
     body.classList.add('modal-open');
@@ -96,4 +97,4 @@ pictures.addEventListener('click',(picture) => {
   }
 });
 
-
+export {body};

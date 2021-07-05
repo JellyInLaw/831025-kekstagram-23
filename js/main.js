@@ -1,5 +1,6 @@
 import {photoDescriptions} from './utils/data.js';
-import './utils/mini-picture.js';
-import './utils/fullscreen-picture.js';
+import './mini-picture.js';
+import './fullscreen-picture.js';
+import './form.js';
 
 photoDescriptions.length;//для автопроверки npm test
