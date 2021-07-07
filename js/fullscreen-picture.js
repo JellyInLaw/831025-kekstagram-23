@@ -30,6 +30,44 @@ const closeButtonHandlerEscape = function (evt) {
 
 pictures.addEventListener('click',cancelTrancition);
 
+const isMoreCommentsVisible = function (CommentsLength,button) {
+  if (CommentsLength === 0) {
+    button.classList.add('hidden');
+  }
+};
+
+const getComment = function (commentsList,commentsToPush,numberComments) {
+
+  const comments = commentsToPush;
+
+  for (let index = 0 ; index < numberComments ; index ++) {
+
+    const comment = document.createElement('li');
+    comment.classList.add('social__comment');
+
+    const avatar = document.createElement('img');
+    avatar.src = comments[index].avatar;
+    avatar.classList.add('social__picture');
+    avatar.alt = 'Аватар комментатора фотографии';
+    avatar.width = 35;
+    avatar.height = 35;
+
+    comment.appendChild(avatar);
+
+    const commentText = document.createElement('p');
+    commentText.classList.add('social__text');
+    commentText.textContent = comments[index].message;
+
+    comment.appendChild(commentText);
+
+    commentsList.appendChild(comment);
+
+  }
+
+  comments.splice(0,numberComments);
+
+};
+
 // открывает просмотр фотографии
 pictures.addEventListener('click',(picture) => {
 
@@ -40,10 +78,6 @@ pictures.addEventListener('click',(picture) => {
 
     closeButton.addEventListener('click',closeButtonHandler);
     document.addEventListener('keydown', closeButtonHandlerEscape);
-
-    // прячет блоки счётчика комментариев и загрузки новых комментариев
-    bigPicture.querySelector('.social__comment-count').classList.add('hidden');
-    bigPicture.querySelector('.comments-loader').classList.add('hidden');
 
     // заполняет URL
     const arrPictureColl = Array.from(picturesCollection);
@@ -60,41 +94,40 @@ pictures.addEventListener('click',(picture) => {
     const countLikes = bigPicture.querySelector('.likes-count');
     countLikes.textContent = photoDescriptions[index].likes;
 
-    // заполняет колличество комментариев
-    // const countComments = bigPicture.querySelector('.comments-count');
-    // countComments.textContent = photoDescriptions[index].comments.length;
-
-    // или так, не разобрался как надо именно
-    const countComments = bigPicture.querySelector('.social__comment-count');
-    countComments.textContent = '';
-    countComments.textContent = `${photoDescriptions[index].comments.length  } из ${  photoDescriptions[index].comments.length}`;
-
-
-    // создает и выводит новые комментарии
-    const commentsList = bigPicture.querySelector('.social__comments');
+    // выводит комментарии
+    const commentsList = document.querySelector('.social__comments');
     commentsList.textContent = '';
-    const newCommentList = photoDescriptions[index].comments;
+    const moreCommentButton = document.querySelector('.comments-loader');
+    moreCommentButton.classList.add('hidden');
 
-    newCommentList.forEach((element,jindex) => {
-      const newElement = document.createElement('li');
-      newElement.classList.add('social__comment');
+    const commentsToPush = photoDescriptions[index].comments.slice();
 
-      const newImg = document.createElement('img');
-      newImg.classList.add('social__picture');
-      newImg.src = photoDescriptions[index].comments[jindex].avatar;
-      newImg.alt = photoDescriptions[index].comments[jindex].name;
-      newImg.width = 35;
-      newImg.height = 35;
+    if (photoDescriptions[index].comments.length <= 5) {
+      getComment(commentsList,commentsToPush,photoDescriptions[index].comments.length);
+    }
 
-      const newCommentText = document.createElement('p');
-      newCommentText.classList.add('social__text');
-      newCommentText.textContent = photoDescriptions[index].comments[jindex].message;
+    if (photoDescriptions[index].comments.length > 5) {
+      moreCommentButton.classList.remove('hidden');
+      getComment(commentsList,commentsToPush,5);
+      moreCommentButton.addEventListener('click',
+        () => {
 
-      newElement.appendChild(newImg);
-      newElement.appendChild(newCommentText);
-      commentsList.appendChild(newElement);
-    });
+          if (commentsToPush.length < 5) {
+            getComment(commentsList,commentsToPush,commentsToPush.length);
+            isMoreCommentsVisible(commentsToPush.length,moreCommentButton);
+          }
+
+          if (commentsToPush.length >= 5) {
+            getComment(commentsList,commentsToPush,5);
+            isMoreCommentsVisible(commentsToPush.length,moreCommentButton);
+          }
+
+        });
+    }
   }
 });
 
 export {body};
+
+//сделать отображение колличества комментариев
+
