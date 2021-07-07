@@ -30,6 +30,15 @@ const closeButtonHandlerEscape = function (evt) {
 
 pictures.addEventListener('click',cancelTrancition);
 
+const getCountOfComment = function (countAll) {
+  const socialCommentCount = document.querySelector('.social__comment-count');
+  const commentsCount = document.querySelector('.comments-count');
+  const countVisibleComment = document.querySelector('.social__comments').children.length;
+
+  socialCommentCount.firstChild.textContent = `${countVisibleComment  } из `;
+  commentsCount.textContent = countAll;
+};
+
 const isMoreCommentsVisible = function (value,button) {
   if (!value) {
     button.classList.add('hidden');
@@ -101,6 +110,7 @@ pictures.addEventListener('click',(picture) => {
 
     if (commentsToPush.length <= 5) {
       getComment(commentsList,commentsToPush);
+      getCountOfComment(commentsToPush.length);
     }
 
     if (commentsToPush.length > 5) {
@@ -111,18 +121,21 @@ pictures.addEventListener('click',(picture) => {
           getComment(commentsList,commentsToPush.slice(startIndex,commentsToPush.length));
           isMoreCommentsVisible(false,moreCommentButton);
           moreCommentButton.removeEventListener('click',moreCommentButtonHandler);
+          getCountOfComment(commentsToPush.length);
         }
 
         if (commentsToPush.slice(startIndex,commentsToPush.length).length > 5) {
           getComment(commentsList,commentsToPush.slice(startIndex,startIndex + 5));
           isMoreCommentsVisible(true,moreCommentButton);
           startIndex += 5;
+          getCountOfComment(commentsToPush.length);
         }
 
       };
 
       moreCommentButton.classList.remove('hidden');
       getComment(commentsList,commentsToPush.slice(startIndex,5));
+      getCountOfComment(commentsToPush.length);
       startIndex += 5;
       moreCommentButton.addEventListener('click',moreCommentButtonHandler);
     }
