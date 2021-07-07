@@ -30,23 +30,22 @@ const closeButtonHandlerEscape = function (evt) {
 
 pictures.addEventListener('click',cancelTrancition);
 
-const isMoreCommentsVisible = function (CommentsLength,button) {
-  if (CommentsLength === 0) {
+const isMoreCommentsVisible = function (value,button) {
+  if (!value) {
     button.classList.add('hidden');
   }
 };
 
-const getComment = function (commentsList,commentsToPush,numberComments) {
+const getComment = function (commentsList,commentsToPush) {
 
   const comments = commentsToPush;
 
-  for (let index = 0 ; index < numberComments ; index ++) {
-
+  comments.forEach((element) => {
     const comment = document.createElement('li');
     comment.classList.add('social__comment');
 
     const avatar = document.createElement('img');
-    avatar.src = comments[index].avatar;
+    avatar.src = element.avatar;
     avatar.classList.add('social__picture');
     avatar.alt = 'Аватар комментатора фотографии';
     avatar.width = 35;
@@ -56,16 +55,12 @@ const getComment = function (commentsList,commentsToPush,numberComments) {
 
     const commentText = document.createElement('p');
     commentText.classList.add('social__text');
-    commentText.textContent = comments[index].message;
+    commentText.textContent = element.message;
 
     comment.appendChild(commentText);
 
     commentsList.appendChild(comment);
-
-  }
-
-  comments.splice(0,numberComments);
-
+  });
 };
 
 // открывает просмотр фотографии
@@ -102,32 +97,37 @@ pictures.addEventListener('click',(picture) => {
 
     const commentsToPush = photoDescriptions[index].comments.slice();
 
-    if (photoDescriptions[index].comments.length <= 5) {
-      getComment(commentsList,commentsToPush,photoDescriptions[index].comments.length);
+    let startIndex = 0;
+
+    if (commentsToPush.length <= 5) {
+      getComment(commentsList,commentsToPush);
     }
 
-    if (photoDescriptions[index].comments.length > 5) {
+    if (commentsToPush.length > 5) {
+
+      const moreCommentButtonHandler = function() {
+
+        if (commentsToPush.slice(startIndex,commentsToPush.length).length <= 5) {
+          getComment(commentsList,commentsToPush.slice(startIndex,commentsToPush.length));
+          isMoreCommentsVisible(false,moreCommentButton);
+          moreCommentButton.removeEventListener('click',moreCommentButtonHandler);
+        }
+
+        if (commentsToPush.slice(startIndex,commentsToPush.length).length > 5) {
+          getComment(commentsList,commentsToPush.slice(startIndex,startIndex + 5));
+          isMoreCommentsVisible(true,moreCommentButton);
+          startIndex += 5;
+        }
+
+      };
+
       moreCommentButton.classList.remove('hidden');
-      getComment(commentsList,commentsToPush,5);
-      moreCommentButton.addEventListener('click',
-        () => {
-
-          if (commentsToPush.length < 5) {
-            getComment(commentsList,commentsToPush,commentsToPush.length);
-            isMoreCommentsVisible(commentsToPush.length,moreCommentButton);
-          }
-
-          if (commentsToPush.length >= 5) {
-            getComment(commentsList,commentsToPush,5);
-            isMoreCommentsVisible(commentsToPush.length,moreCommentButton);
-          }
-
-        });
+      getComment(commentsList,commentsToPush.slice(startIndex,5));
+      startIndex += 5;
+      moreCommentButton.addEventListener('click',moreCommentButtonHandler);
     }
   }
 });
 
 export {body};
-
-//сделать отображение колличества комментариев
 
