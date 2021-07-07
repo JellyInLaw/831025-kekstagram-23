@@ -6,6 +6,8 @@ const pictures = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');
 const closeButton = bigPicture.querySelector('.big-picture__cancel');
 const picturesCollection = document.querySelectorAll('.picture');
+const socialCommentCount = document.querySelector('.social__comment-count');
+const commentsCount = document.querySelector('.comments-count');
 
 const cancelTrancition = function (evt) {
   if (evt.target.classList.contains('picture__img')) {
@@ -31,8 +33,6 @@ const closeButtonHandlerEscape = function (evt) {
 pictures.addEventListener('click',cancelTrancition);
 
 const getCountOfComment = function (countAll) {
-  const socialCommentCount = document.querySelector('.social__comment-count');
-  const commentsCount = document.querySelector('.comments-count');
   const countVisibleComment = document.querySelector('.social__comments').children.length;
 
   socialCommentCount.firstChild.textContent = `${countVisibleComment  } из `;
