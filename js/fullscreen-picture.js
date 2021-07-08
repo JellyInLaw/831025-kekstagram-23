@@ -132,7 +132,6 @@ pictures.addEventListener('click',(picture) => {
         }
 
       };
-
       moreCommentButton.classList.remove('hidden');
       getComment(commentsList,commentsToPush.slice(startIndex,5));
       getCountOfComment(commentsToPush.length);
