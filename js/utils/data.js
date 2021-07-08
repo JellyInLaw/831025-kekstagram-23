@@ -59,7 +59,7 @@ function getComment (index){
 
 function getComments (index) {
   const comments = [];
-  comments.length = getRandomIntInclusive(1,10);
+  comments.length = getRandomIntInclusive(0,20);
   for (let jindex = 0 ; jindex < comments.length ; jindex ++ ){
     comments[jindex] = getComment(index + getRandomIntInclusive(1,100000));
   }
