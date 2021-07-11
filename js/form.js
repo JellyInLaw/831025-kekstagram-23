@@ -14,9 +14,9 @@ const resetInputValue = function () {
   textDescription.value = '';
 };
 
-const isActiveElement = function () {
-  if (document.activeElement === textDescription
-    || document.activeElement === textHashtags) {
+const isActiveElement = function (element) {
+  if (element === textDescription
+    || element === textHashtags) {
     return false;
   }
   return true;
@@ -54,8 +54,8 @@ const closeImgUpload = function () {
 };
 
 const pressEsc = function (evt) {
-  if (isEsc(evt) && isActiveElement()) {
-    evt.preventDefault();
+  if (isEsc(evt) && isActiveElement(document.activeElement)) {
+    evt.preventDefault(evt);
     imgUploadOverlay.classList.add('hidden');
     body.classList.remove('modal-open');
     imgUploadClose.removeEventListener('click',closeImgUpload);
