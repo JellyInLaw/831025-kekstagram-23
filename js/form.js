@@ -7,11 +7,36 @@ const textHashtags = document.querySelector('.text__hashtags');
 const textDescription = document.querySelector('.text__description');
 const imgUploadOverlay = document.querySelector('.img-upload__overlay');
 const imgUploadClose = document.querySelector('.img-upload__cancel');
+const scaleControlValue = document.querySelector('.scale__control--value');
+
+
+const editingImage = function () {
+  const scaleControlSmaller = document.querySelector('.scale__control--smaller');
+  const scaleControlBigger = document.querySelector('.scale__control--bigger');
+  const imgUploadPreview = document.querySelector ('.img-upload__preview').children[0];
+
+  scaleControlValue.value = 100;
+  scaleControlSmaller.addEventListener('click',() => {
+    if (scaleControlValue.value > 25) {
+      scaleControlValue.value = parseInt(scaleControlValue.value,10) - 25;
+      const transformScale = scaleControlValue.value / 100;
+      imgUploadPreview.style.transform = `scale(${transformScale})`;
+    }
+  });
+  scaleControlBigger.addEventListener('click',() => {
+    if (scaleControlValue.value < 100) {
+      scaleControlValue.value = parseInt(scaleControlValue.value,10) + 25;
+      const transformScale = scaleControlValue.value / 100;
+      imgUploadPreview.style.transform = `scale(${transformScale})`;
+    }
+  });
+};
 
 const resetInputValue = function () {
   uploadInput.value = '';
   textHashtags.value = '';
   textDescription.value = '';
+  scaleControlValue.value = '';
 };
 
 const isActiveElement = function (element) {
@@ -71,6 +96,7 @@ const openUploadForm = function () {
   imgUploadClose.addEventListener('click',closeImgUpload);
   document.addEventListener('keydown',pressEsc);
   textHashtags.addEventListener('input',validateHashtag);
+  editingImage();
 };
 
 uploadInput.addEventListener('change',openUploadForm);
