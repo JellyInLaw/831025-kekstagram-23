@@ -13,10 +13,12 @@ const scaleControlSmaller = document.querySelector('.scale__control--smaller');
 const scaleControlBigger = document.querySelector('.scale__control--bigger');
 const imgUploadPreview = document.querySelector ('.img-upload__preview').children[0];
 
+let transformScale = 100;
+
 const scaleControlSmallerHandler = function () {
   if (scaleControlValue.value > 25) {
     scaleControlValue.value = parseInt(scaleControlValue.value,10) - 25;
-    const transformScale = scaleControlValue.value / 100;
+    transformScale = scaleControlValue.value / 100;
     imgUploadPreview.style.transform = `scale(${transformScale})`;
   }
 };
@@ -24,7 +26,7 @@ const scaleControlSmallerHandler = function () {
 const scaleControlBiggerHandler = function () {
   if (scaleControlValue.value < 100) {
     scaleControlValue.value = parseInt(scaleControlValue.value,10) + 25;
-    const transformScale = scaleControlValue.value / 100;
+    transformScale = scaleControlValue.value / 100;
     imgUploadPreview.style.transform = `scale(${transformScale})`;
   }
 };
@@ -40,6 +42,8 @@ const resetInputValue = function () {
   textHashtags.value = '';
   textDescription.value = '';
   scaleControlValue.value = '';
+  transformScale = 1;
+  imgUploadPreview.style.transform = `scale(${transformScale})`;
   resetEffect();
 };
 
