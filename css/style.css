@@ -558,8 +558,8 @@ main {
   top: 0;
   border-radius:50%;
   border: none;
-  /* left: 29px; */
-  top: -4.5px;
+  left: 29px;
+  top: -6.5px;
   width: 28px;
   height: 28px;
 

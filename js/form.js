@@ -1,6 +1,7 @@
 import {isEsc} from './utils/is-esc.js';
 import {body} from './fullscreen-picture.js';
 import {getUniqueArray} from './utils/getUniqueArray.js';
+import {resetEffect} from './image-editing.js';
 
 const uploadInput = document.querySelector('.img-upload__input');
 const textHashtags = document.querySelector('.text__hashtags');
@@ -39,6 +40,7 @@ const resetInputValue = function () {
   textHashtags.value = '';
   textDescription.value = '';
   scaleControlValue.value = '';
+  resetEffect();
 };
 
 const isActiveElement = function (element) {
