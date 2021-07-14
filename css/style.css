@@ -532,7 +532,7 @@ main {
   bottom: 9px;
   left: 50%;
 
-  padding: 7px 11px 0;
+  padding: 7px 11px 7px;
 
   width: 495px;
   height: 34px;
@@ -552,6 +552,26 @@ main {
 
 .effect-level .noUi-target {
   border-radius: 16px;
+}
+
+.effect-level .noUi-handle {
+  top: 0;
+  border-radius:50%;
+  border: none;
+  /* left: 29px; */
+  top: -4.5px;
+  width: 28px;
+  height: 28px;
+
+}
+
+.noUi-touch-area {
+  background: #ffe753;
+  border-radius: 50%;
+}
+
+.noUi-handle::after,.noUi-handle::before {
+  display: none;
 }
 
 .effect-level .noUi-connects {
