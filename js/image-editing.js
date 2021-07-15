@@ -42,7 +42,7 @@ effects.addEventListener('click',(evt) => {
           'max': 1,
         },
         step: 0.1,
-        start: 100,
+        start: 1,
       });
 
       effectLevelContainer.noUiSlider.on('update',(__,handle,unencoded) => {
@@ -58,7 +58,7 @@ effects.addEventListener('click',(evt) => {
           'max': 1,
         },
         step: 0.1,
-        start: 100,
+        start: 1,
       });
 
       effectLevelContainer.noUiSlider.on('update',(__,handle,unencoded) => {
@@ -90,7 +90,7 @@ effects.addEventListener('click',(evt) => {
           'max': 3,
         },
         step: 0.1,
-        start: 100,
+        start: 3,
       });
 
       effectLevelContainer.noUiSlider.on('update',(__,handle,unencoded) => {
@@ -106,7 +106,7 @@ effects.addEventListener('click',(evt) => {
           'max': 3,
         },
         step: 0.1,
-        start: 100,
+        start: 3,
       });
 
       effectLevelContainer.noUiSlider.on('update',(__,handle,unencoded) => {
