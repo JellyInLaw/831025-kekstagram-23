@@ -1,5 +1,5 @@
-import {body} from './fullscreen-picture.js';
-import { isEsc } from './utils/is-esc.js';
+import {body} from '../fullscreen-picture.js';
+import { isEsc } from './is-esc.js';
 
 const template = document.querySelector('#success');
 const successModal = template.content.cloneNode(true).querySelector('.success');

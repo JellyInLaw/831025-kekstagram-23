@@ -3,7 +3,7 @@ import {body} from './fullscreen-picture.js';
 import {getUniqueArray} from './utils/getUniqueArray.js';
 import {resetEffect} from './image-editing.js';
 import { showUploadError } from './show-error.js';
-import { showUploadSucces } from './show-succes.js';
+import { showUploadSucces } from './utils/show-succes.js';
 
 const uploadInput = document.querySelector('.img-upload__input');
 const textHashtags = document.querySelector('.text__hashtags');

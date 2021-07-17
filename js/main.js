@@ -3,7 +3,7 @@ import './fullscreen-picture.js';
 import './form.js';
 import './image-editing.js';
 import './show-error.js';
-import './show-succes.js';
+import './utils/show-succes.js';
 import {showRenderError} from './show-render-error.js';
 import { renderPictures } from './mini-picture.js';
 import {openBigPicture,pictures} from './fullscreen-picture.js';
