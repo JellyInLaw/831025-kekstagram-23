@@ -7,7 +7,7 @@ const buttonRandom = imgFilters.querySelector('#filter-random');
 const buttonDiscussed = imgFilters.querySelector('#filter-discussed');
 
 const gerSort = function (data) {
-  data.sort((a, b) => b.comments.length - a.comments.length);
+  data.sort((aaa, bbb) => bbb.comments.length - aaa.comments.length);
   return data;
 };
 
