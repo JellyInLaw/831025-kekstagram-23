@@ -1,11 +1,12 @@
-import { photoDescriptions } from './utils/data.js';
+// import { photoDescriptions } from './utils/data.js';
 import {isEsc} from './utils/is-esc.js';
+import { getData } from './utils/data.js';
 
 const body = document.body;
 const pictures = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');
 const closeButton = bigPicture.querySelector('.big-picture__cancel');
-const picturesCollection = document.querySelectorAll('.picture');
+
 const socialCommentCount = document.querySelector('.social__comment-count');
 const commentsCount = document.querySelector('.comments-count');
 
@@ -73,7 +74,7 @@ const getComment = function (commentsList,commentsToPush) {
 };
 
 // открывает просмотр фотографии
-pictures.addEventListener('click',(picture) => {
+const openBigPicture = function (picture,data) {
 
   if (picture.target.classList.contains('picture__img')) {
     bigPicture.classList.remove('hidden');
@@ -81,22 +82,23 @@ pictures.addEventListener('click',(picture) => {
     body.classList.add('modal-open');
 
     closeButton.addEventListener('click',closeButtonHandler);
-    document.addEventListener('keydown', closeButtonHandlerEscape);
+    document.addEventListener('keydown',closeButtonHandlerEscape);
 
     // заполняет URL
+    const picturesCollection = document.querySelectorAll('.picture');
     const arrPictureColl = Array.from(picturesCollection);
     const link = picture.target.parentNode;
     const index = arrPictureColl.indexOf(link);
     const childNodes = bigPicture.querySelector('.big-picture__img').children[0];
-    childNodes.src = photoDescriptions[index].url;
+    childNodes.src = data[index].url;
 
     //подписывает описание фотографии
     const socialCaption = bigPicture.querySelector('.social__caption');
-    socialCaption.textContent = photoDescriptions[index].description;
+    socialCaption.textContent = data[index].description;
 
     // заполняет лайки
     const countLikes = bigPicture.querySelector('.likes-count');
-    countLikes.textContent = photoDescriptions[index].likes;
+    countLikes.textContent = data[index].likes;
 
     // выводит комментарии
     const commentsList = document.querySelector('.social__comments');
@@ -104,7 +106,7 @@ pictures.addEventListener('click',(picture) => {
     const moreCommentButton = document.querySelector('.comments-loader');
     moreCommentButton.classList.add('hidden');
 
-    const commentsToPush = photoDescriptions[index].comments.slice();
+    const commentsToPush = data[index].comments.slice();
 
     let startIndex = 0;
 
@@ -139,7 +141,17 @@ pictures.addEventListener('click',(picture) => {
       moreCommentButton.addEventListener('click',moreCommentButtonHandler);
     }
   }
+};
+
+pictures.addEventListener('click',(picture) => {
+  const url = 'https://23.javascript.pages.academy/kekstagram/data';
+
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      openBigPicture(picture,data);
+    });
+
 });
 
 export {body};
-
