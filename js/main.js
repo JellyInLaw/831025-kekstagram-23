@@ -1,11 +1,10 @@
 import './mini-picture.js';
 import './fullscreen-picture.js';
 import './form.js';
-import './image-editing.js';
-import './show-error.js';
+import './utils/show-error.js';
 import './utils/show-succes.js';
-import {showRenderError} from './show-render-error.js';
-import { renderPictures } from './mini-picture.js';
+import {showRenderError} from './utils/show-render-error.js';
+import {renderPictures} from './mini-picture.js';
 import {openBigPicture,pictures} from './fullscreen-picture.js';
 import {setUploadForm,closeImgUpload} from './form.js';
 
