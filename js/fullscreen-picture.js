@@ -1,6 +1,4 @@
-// import { photoDescriptions } from './utils/data.js';
 import {isEsc} from './utils/is-esc.js';
-import { getData } from './utils/data.js';
 
 const body = document.body;
 const pictures = document.querySelector('.pictures');
@@ -143,15 +141,5 @@ const openBigPicture = function (picture,data) {
   }
 };
 
-pictures.addEventListener('click',(picture) => {
-  const url = 'https://23.javascript.pages.academy/kekstagram/data';
+export {body,pictures,openBigPicture};
 
-  fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-      openBigPicture(picture,data);
-    });
-
-});
-
-export {body};
