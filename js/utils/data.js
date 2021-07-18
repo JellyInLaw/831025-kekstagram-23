@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import {getRandomIntInclusive} from './get-random-int-inclusive.js';
 
 // const MESSAGES = [
@@ -101,3 +102,6 @@ const getData = function (fn) {
 };
 
 export {getData};
+=======
+
+>>>>>>> d0bc136 (вроде сделал получение и отправку данных)
