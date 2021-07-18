@@ -25,19 +25,19 @@ const onImgFilters = function (data) {
       buttonDiscussed.classList.remove('img-filters__button--active');
 
       if (button.target.id === 'filter-default') {
-        buttonDefault.classList.add('img-filters__button--active');
+        button.target.classList.add('img-filters__button--active');
         clearPictures();
         renderPictures(data);
       }
 
       if (button.target.id === 'filter-random') {
-        buttonRandom.classList.add('img-filters__button--active');
+        button.target.classList.add('img-filters__button--active');
         clearPictures();
         renderPictures(shuffle(data.slice()).slice(0,10));
       }
 
       if (button.target.id === 'filter-discussed') {
-        buttonDiscussed.classList.add('img-filters__button--active');
+        button.target.classList.add('img-filters__button--active');
         clearPictures();
         renderPictures(gerSort(data.slice()));
       }
