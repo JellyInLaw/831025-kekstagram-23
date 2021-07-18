@@ -18,7 +18,7 @@ fetch('https://23.javascript.pages.academy/kekstagram/data')
       openBigPicture(picture,data);
     });
 
-    onImgFilters();
+    onImgFilters(data);
 
   })
   .catch(()=>{showRenderError();});

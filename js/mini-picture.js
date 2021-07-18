@@ -2,6 +2,12 @@ const pictures = document.querySelector('.pictures');
 const fragment = document.createDocumentFragment();
 const pictureTemplate = document.querySelector('#picture');
 
+const clearPictures = function () {
+  const visiblePictures = pictures.querySelectorAll('.picture');
+  visiblePictures.forEach((elem) => {
+    elem.remove();
+  });
+};
 
 const renderPictures = function (data) {
   data.forEach((elem,index) => {
@@ -18,4 +24,4 @@ const renderPictures = function (data) {
 
 };
 
-export {renderPictures};
+export {renderPictures,clearPictures};

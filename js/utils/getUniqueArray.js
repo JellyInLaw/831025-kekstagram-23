@@ -10,4 +10,9 @@ const getUniqueArray = function (arr) {
 
 };
 
-export {getUniqueArray};
+const shuffle = function (arr) {
+  arr.sort(() => Math.random() - 0.5);
+  return arr;
+};
+
+export {getUniqueArray,shuffle};
