@@ -3,6 +3,7 @@ import {body} from './fullscreen-picture.js';
 import {getUniqueArray} from './utils/getUniqueArray.js';
 import {showUploadError} from './utils/show-error.js';
 import {showUploadSucces} from './utils/show-succes.js';
+import { resetEffect } from './image-editing.js';
 
 const uploadInput = document.querySelector('.img-upload__input');
 const textHashtags = document.querySelector('.text__hashtags');
@@ -69,6 +70,7 @@ const resetInputValue = function () {
   scaleControlValue.value = '';
   transformScale = 1;
   imgUploadPreview.style.transform = `scale(${transformScale})`;
+  resetEffect();
 };
 
 const isActiveElement = function (element) {
