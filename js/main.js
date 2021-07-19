@@ -1,3 +1,4 @@
+
 import './mini-picture.js';
 import './fullscreen-picture.js';
 import './form.js';
