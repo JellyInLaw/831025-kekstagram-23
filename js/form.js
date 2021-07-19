@@ -5,6 +5,7 @@ import {showUploadError} from './utils/show-error.js';
 import {showUploadSucces} from './utils/show-succes.js';
 import { resetEffect } from './image-editing.js';
 import { setData } from './data.js';
+import { URL } from './main.js';
 
 const uploadInput = document.querySelector('.img-upload__input');
 const textHashtags = document.querySelector('.text__hashtags');
@@ -41,11 +42,15 @@ const editingScale = function () {
   scaleControlBigger.addEventListener('click',scaleControlBiggerHandler);
 };
 
-const setUploadForm = (onSuccess) => {
+const setUploadForm = function (onSuccess) {
   uploadForm.addEventListener('submit',(evt) => {
     evt.preventDefault();
     const formData = new FormData(evt.target);
-    setData(onSuccess,showUploadSucces,showUploadError,formData);
+    const formSetSucces = function () {
+      onSuccess();
+      showUploadSucces();
+    };
+    setData(URL,formSetSucces,showUploadError,formData);
   });
 };
 

@@ -1,31 +1,31 @@
-const URL = 'https://23.javascript.pages.academy/kekstagram';
-
-const getData = function (renderPictures,onImgFilters,showRenderError) {
+const getData = function (URL,onSucces,onError) {
   fetch(`${URL  }/data`)
     .then((response) => response.json())
     .then((data) => {
-      renderPictures(data);
-      onImgFilters(data);
-    }).catch(() => {showRenderError();});
+      onSucces(data);
+    }).catch(() => {
+      onError();
+    });
 };
 
-const setData = function (onSuccess,showUploadSucces,showUploadError,formData) {
+const setData = function (URL,onSuccess,onError,data) {
   fetch(URL,
     {
       method: 'POST',
-      body: formData,
+      body: data,
       type:'multipart/form-data',
     },
   ).then((response) => {
     if (response.ok) {
       onSuccess();
-      showUploadSucces();
     }
     else {
-      showUploadError();
+      onError();
     }
   })
-    .catch(() => {showUploadError();});
+    .catch(() => {
+      onError();
+    });
 };
 
 export {getData,setData};

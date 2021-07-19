@@ -11,6 +11,15 @@ import {setUploadForm,closeImgUpload} from './form.js';
 import {onImgFilters} from './img-fiters.js';
 import { getData } from './data.js';
 
-getData(renderPictures,onImgFilters,showRenderError);
+const URL = 'https://23.javascript.pages.academy/kekstagram';
+
+const renderData = function (data) {
+  renderPictures(data);
+  onImgFilters(data);
+};
+
+getData(URL,renderData,showRenderError);
 
 setUploadForm(closeImgUpload);
+
+export {URL};
