@@ -4,7 +4,7 @@ const pictures = document.querySelector('.pictures');
 const fragment = document.createDocumentFragment();
 const pictureTemplate = document.querySelector('#picture');
 
-const RERENDER_DELAY = 50;
+const RERENDER_DELAY = 500;
 
 let clickHandler;
 
@@ -58,6 +58,6 @@ const renderPictures = debounce((data) => {
   };
 
   pictures.addEventListener('click',clickHandler);
-}, RERENDER_DELAY + 100);
+}, RERENDER_DELAY);
 
 export {renderPictures,clearPictures};
