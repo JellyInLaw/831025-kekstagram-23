@@ -4,6 +4,7 @@ import {getUniqueArray} from './utils/getUniqueArray.js';
 import {showUploadError} from './utils/show-error.js';
 import {showUploadSucces} from './utils/show-succes.js';
 import { resetEffect } from './image-editing.js';
+import { setData } from './data.js';
 
 const uploadInput = document.querySelector('.img-upload__input');
 const textHashtags = document.querySelector('.text__hashtags');
@@ -44,22 +45,7 @@ const setUploadForm = (onSuccess) => {
   uploadForm.addEventListener('submit',(evt) => {
     evt.preventDefault();
     const formData = new FormData(evt.target);
-    fetch('https://23.javascript.pages.academy/kekstagram',
-      {
-        method: 'POST',
-        body: formData,
-        type:'multipart/form-data',
-      },
-    ).then((response) => {
-      if (response.ok) {
-        onSuccess();
-        showUploadSucces();
-      }
-      else {
-        showUploadError();
-      }
-    })
-      .catch(() => {showUploadError();});
+    setData(onSuccess,showUploadSucces,showUploadError,formData);
   });
 };
 

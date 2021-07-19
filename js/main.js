@@ -1,4 +1,4 @@
-
+import './data.js';
 import './mini-picture.js';
 import './fullscreen-picture.js';
 import './form.js';
@@ -9,15 +9,8 @@ import {showRenderError} from './utils/show-render-error.js';
 import {renderPictures} from './mini-picture.js';
 import {setUploadForm,closeImgUpload} from './form.js';
 import {onImgFilters} from './img-fiters.js';
+import { getData } from './data.js';
 
-fetch('https://23.javascript.pages.academy/kekstagram/data')
-  .then((response) => response.json())
-  .then((data) => {
-    renderPictures(data);
-
-    onImgFilters(data);
-
-  })
-  .catch(()=>{showRenderError();});
+getData(renderPictures,onImgFilters,showRenderError);
 
 setUploadForm(closeImgUpload);
