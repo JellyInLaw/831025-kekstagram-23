@@ -1,12 +1,18 @@
+import {openBigPicture } from './fullscreen-picture.js';
+
+
 const pictures = document.querySelector('.pictures');
 const fragment = document.createDocumentFragment();
 const pictureTemplate = document.querySelector('#picture');
+
+let clickHandler;
 
 const clearPictures = function () {
   const visiblePictures = pictures.querySelectorAll('.picture');
   visiblePictures.forEach((elem) => {
     elem.remove();
   });
+  pictures.removeEventListener('click',clickHandler);
 };
 
 const renderPictures = function (data) {
@@ -21,6 +27,12 @@ const renderPictures = function (data) {
   });
 
   pictures.appendChild(fragment);
+
+  clickHandler = (picture) => {
+    openBigPicture(picture,data);
+  };
+
+  pictures.addEventListener('click',clickHandler);
 
 };
 
