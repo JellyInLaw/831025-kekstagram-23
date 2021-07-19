@@ -5,6 +5,7 @@ const fragment = document.createDocumentFragment();
 const pictureTemplate = document.querySelector('#picture');
 
 const RERENDER_DELAY = 50;
+
 let clickHandler;
 
 // реализацию debounce взял с https://frontend-stuff.com/blog/debounce-in-javascript/

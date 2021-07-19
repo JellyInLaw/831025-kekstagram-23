@@ -4,7 +4,6 @@ const body = document.body;
 const pictures = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');
 const closeButton = bigPicture.querySelector('.big-picture__cancel');
-
 const socialCommentCount = document.querySelector('.social__comment-count');
 const commentsCount = document.querySelector('.comments-count');
 
@@ -55,7 +54,7 @@ const getComment = function (commentsList,commentsToPush) {
     const avatar = document.createElement('img');
     avatar.src = element.avatar;
     avatar.classList.add('social__picture');
-    avatar.alt = 'Аватар комментатора фотографии';
+    avatar.alt = element.name;
     avatar.width = 35;
     avatar.height = 35;
 
