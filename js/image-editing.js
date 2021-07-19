@@ -6,6 +6,7 @@ const effectLevelContainer = document.querySelector('.effect-level__slider');
 const effectLevelValue = document.querySelector('.effect-level__value');
 const effects = document.querySelector('.effects__list');
 
+
 //slider
 noUiSlider.create(effectLevelContainer, {
   start: 100,

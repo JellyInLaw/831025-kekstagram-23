@@ -1,7 +1,11 @@
 import {isEsc} from './utils/is-esc.js';
 import {body} from './fullscreen-picture.js';
 import {getUniqueArray} from './utils/getUniqueArray.js';
-import {resetEffect} from './image-editing.js';
+import {showUploadError} from './utils/show-error.js';
+import {showUploadSucces} from './utils/show-succes.js';
+import { resetEffect } from './image-editing.js';
+import { setData } from './data.js';
+import { URL } from './main.js';
 
 const uploadInput = document.querySelector('.img-upload__input');
 const textHashtags = document.querySelector('.text__hashtags');
@@ -12,6 +16,7 @@ const scaleControlValue = document.querySelector('.scale__control--value');
 const scaleControlSmaller = document.querySelector('.scale__control--smaller');
 const scaleControlBigger = document.querySelector('.scale__control--bigger');
 const imgUploadPreview = document.querySelector ('.img-upload__preview').children[0];
+const uploadForm = document.querySelector('.img-upload__form');
 
 let transformScale = 100;
 
@@ -35,6 +40,18 @@ const editingScale = function () {
   scaleControlValue.value = 100;
   scaleControlSmaller.addEventListener('click',scaleControlSmallerHandler);
   scaleControlBigger.addEventListener('click',scaleControlBiggerHandler);
+};
+
+const setUploadForm = function (onSuccess) {
+  uploadForm.addEventListener('submit',(evt) => {
+    evt.preventDefault();
+    const formData = new FormData(evt.target);
+    const formSetSucces = function () {
+      onSuccess();
+      showUploadSucces();
+    };
+    setData(URL,formSetSucces,showUploadError,formData);
+  });
 };
 
 const resetInputValue = function () {
@@ -112,4 +129,4 @@ const openUploadForm = function () {
 
 uploadInput.addEventListener('change',openUploadForm);
 
-export {imgUploadPreview};
+export {setUploadForm,closeImgUpload,imgUploadPreview};
