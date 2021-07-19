@@ -10,7 +10,7 @@ let clickHandler;
 
 // реализацию debounce взял с https://frontend-stuff.com/blog/debounce-in-javascript/
 
-function debounce(func, wait, immediate) {
+const debounce = function (func, wait, immediate) {
   let timeout;
 
   return function executedFunction() {
@@ -30,7 +30,7 @@ function debounce(func, wait, immediate) {
 
     if (callNow) {func.apply(context, args);}
   };
-}
+};
 
 const clearPictures = debounce(() => {
   const visiblePictures = pictures.querySelectorAll('.picture');
