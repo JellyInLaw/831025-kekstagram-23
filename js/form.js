@@ -64,12 +64,7 @@ const resetInputValue = function () {
   resetEffect();
 };
 
-const isActiveElement = function (element) {
-  if (element === textDescription || element === textHashtags) {
-    return false;
-  }
-  return true;
-};
+const isActiveElement = (element) => !(element === textDescription || element === textHashtags);
 
 const validateHashtag = function () {
   const hashtags = textHashtags.value.split(' ');
