@@ -110,7 +110,7 @@ const closeImgUpload = function () {
 
 const pressEsc = function (evt) {
   if (isEsc(evt) && isActiveElement(document.activeElement)) {
-    evt.preventDefault(evt);
+    evt.preventDefault();
     imgUploadOverlay.classList.add('hidden');
     body.classList.remove('modal-open');
     imgUploadClose.removeEventListener('click',closeImgUpload);
