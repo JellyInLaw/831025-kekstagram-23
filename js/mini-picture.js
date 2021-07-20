@@ -1,10 +1,10 @@
 import {openBigPicture } from './fullscreen-picture.js';
 
+const RERENDER_DELAY = 500;
+
 const pictures = document.querySelector('.pictures');
 const fragment = document.createDocumentFragment();
 const pictureTemplate = document.querySelector('#picture');
-
-const RERENDER_DELAY = 500;
 
 let clickHandler;
 
