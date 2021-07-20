@@ -74,7 +74,7 @@ const isActiveElement = function (element) {
 const validateHashtag = function () {
   const hashtags = textHashtags.value.split(' ');
   const re = /^#[A-Za-zА-Яа-я0-9]{1,19}$/;
-  const errors = [];
+  let errors = [];
   let newHashtagsArray = [];
 
   hashtags.forEach((element) => {
@@ -88,7 +88,11 @@ const validateHashtag = function () {
     if (newHashtagsArray.length > 5){
       errors.push('Нельзя указать больше пяти хэш-тегов');
     }
+    if (textHashtags.value.length === 0){
+      errors = [];
+    }
   });
+
   newHashtagsArray = getUniqueArray(newHashtagsArray);
   textHashtags.value = newHashtagsArray.join(' ');
   textHashtags.setCustomValidity(errors.join('. \n'));
