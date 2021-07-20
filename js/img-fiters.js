@@ -6,12 +6,12 @@ const buttonDefault = imgFilters.querySelector('#filter-default');
 const buttonRandom = imgFilters.querySelector('#filter-random');
 const buttonDiscussed = imgFilters.querySelector('#filter-discussed');
 
-const gerSort = function (data) {
+const sortData = function (data) {
   data.sort((aaa, bbb) => bbb.comments.length - aaa.comments.length);
   return data;
 };
 
-const onImgFilters = function (data) {
+const filterImages = function (data) {
   imgFilters.classList.remove('img-filters--inactive');
 
   buttonDefault.classList.add('img-filters__button--active');
@@ -39,10 +39,10 @@ const onImgFilters = function (data) {
       if (button.target.id === 'filter-discussed') {
         button.target.classList.add('img-filters__button--active');
         clearPictures();
-        renderPictures(gerSort(data.slice()));
+        renderPictures(sortData(data.slice()));
       }
     }
   });
 };
 
-export {onImgFilters};
+export {filterImages};

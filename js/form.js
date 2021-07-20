@@ -36,7 +36,7 @@ const scaleControlBiggerHandler = function () {
   }
 };
 
-const editingScale = function () {
+const resize = function () {
   scaleControlValue.value = 100;
   scaleControlSmaller.addEventListener('click',scaleControlSmallerHandler);
   scaleControlBigger.addEventListener('click',scaleControlBiggerHandler);
@@ -128,7 +128,7 @@ const openUploadForm = function () {
   imgUploadClose.addEventListener('click',closeImgUpload);
   document.addEventListener('keydown',pressEsc);
   textHashtags.addEventListener('input',validateHashtag);
-  editingScale();
+  resize();
 };
 
 uploadInput.addEventListener('change',openUploadForm);
