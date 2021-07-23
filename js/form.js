@@ -1,8 +1,7 @@
-import {isEsc} from './utils/is-esc.js';
-import {body} from './fullscreen-picture.js';
-import {getUniqueArray} from './utils/getUniqueArray.js';
-import {showUploadError} from './utils/show-error.js';
-import {showUploadSucces} from './utils/show-succes.js';
+import { isEsc } from './utils/utils.js';
+import { body } from './fullscreen-picture.js';
+import { getUniqueArray } from './utils/utils.js';
+import { modalHandler } from './utils/show.js';
 import { resetEffect } from './image-editing.js';
 import { setData } from './data.js';
 import { URL } from './main.js';
@@ -48,9 +47,9 @@ const setUploadForm = function (onSuccess) {
     const formData = new FormData(evt.target);
     const formSetSucces = function () {
       onSuccess();
-      showUploadSucces();
+      modalHandler('success');
     };
-    setData(URL,formSetSucces,showUploadError,formData);
+    setData(URL,formSetSucces,modalHandler,formData);
   });
 };
 

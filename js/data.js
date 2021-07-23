@@ -4,7 +4,7 @@ const getData = function (URL,onSucces,onError) {
     .then((data) => {
       onSucces(data);
     }).catch(() => {
-      onError();
+      onError('render-error');
     });
 };
 
@@ -17,14 +17,14 @@ const setData = function (URL,onSuccess,onError,data) {
     },
   ).then((response) => {
     if (response.ok) {
-      onSuccess();
+      onSuccess('success');
     }
     else {
-      onError();
+      onError('error');
     }
   })
     .catch(() => {
-      onError();
+      onError('error');
     });
 };
 

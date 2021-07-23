@@ -1,5 +1,5 @@
 import { renderPictures,clearPictures } from './mini-picture.js';
-import { shuffle } from './utils/getUniqueArray.js';
+import { shuffle } from './utils/utils.js';
 
 const imgFilters = document.querySelector('.img-filters');
 const buttonDefault = imgFilters.querySelector('#filter-default');

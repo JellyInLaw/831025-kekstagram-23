@@ -1,4 +1,4 @@
-import {isEsc} from './utils/is-esc.js';
+import { isEsc } from './utils/utils.js';
 
 const body = document.body;
 const pictures = document.querySelector('.pictures');
