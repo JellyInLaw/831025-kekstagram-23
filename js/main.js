@@ -5,6 +5,7 @@ import './form.js';
 import './utils/show.js';
 import './utils/show.js';
 import './image-editing.js';
+import './upload-picture.js';
 import {modalHandler} from './utils/show.js';
 import {renderPictures} from './mini-picture.js';
 import {setUploadForm,closeImgUpload} from './form.js';
