@@ -27,6 +27,22 @@ const resetEffect = function () {
   effectLevel.classList.add('hidden');
 };
 
+const updateEffects = function (min,max,step,start,kind,unit) {
+  effectLevelContainer.noUiSlider.updateOptions({
+    range: {
+      'min': min,
+      'max': max,
+    },
+    step: step,
+    start: start,
+  });
+
+  effectLevelContainer.noUiSlider.on('update',(__,handle,unencoded) => {
+    effectLevelValue.value = unencoded[handle];
+    imgUploadPreview.style.filter = `${kind}(${effectLevelValue.value}${unit})`;
+  });
+};
+
 effectLevel.classList.add('hidden');
 
 effects.addEventListener('click',(evt) => {
@@ -37,83 +53,23 @@ effects.addEventListener('click',(evt) => {
     imgUploadPreview.classList.add(`effects__preview--${effect}`);
 
     if (effect === 'chrome') {
-      effectLevelContainer.noUiSlider.updateOptions({
-        range: {
-          'min': 0,
-          'max': 1,
-        },
-        step: 0.1,
-        start: 1,
-      });
-
-      effectLevelContainer.noUiSlider.on('update',(__,handle,unencoded) => {
-        effectLevelValue.value = unencoded[handle];
-        imgUploadPreview.style.filter = `grayscale(${effectLevelValue.value})`;
-      });
+      updateEffects(0,1,0.1,1,'grayscale','');
     }
 
     if (effect === 'sepia') {
-      effectLevelContainer.noUiSlider.updateOptions({
-        range: {
-          'min': 0,
-          'max': 1,
-        },
-        step: 0.1,
-        start: 1,
-      });
-
-      effectLevelContainer.noUiSlider.on('update',(__,handle,unencoded) => {
-        effectLevelValue.value = unencoded[handle];
-        imgUploadPreview.style.filter = `sepia(${effectLevelValue.value})`;
-      });
+      updateEffects(0,1,0.1,1,'sepia','');
     }
 
     if (effect === 'marvin') {
-      effectLevelContainer.noUiSlider.updateOptions({
-        range: {
-          'min': 0,
-          'max': 100,
-        },
-        step: 1,
-        start: 100,
-      });
-
-      effectLevelContainer.noUiSlider.on('update',(__,handle,unencoded) => {
-        effectLevelValue.value = unencoded[handle];
-        imgUploadPreview.style.filter = `invert(${effectLevelValue.value}%)`;
-      });
+      updateEffects(0,100,1,100,'invert','%');
     }
 
     if (effect === 'phobos') {
-      effectLevelContainer.noUiSlider.updateOptions({
-        range: {
-          'min': 0,
-          'max': 3,
-        },
-        step: 0.1,
-        start: 3,
-      });
-
-      effectLevelContainer.noUiSlider.on('update',(__,handle,unencoded) => {
-        effectLevelValue.value = unencoded[handle];
-        imgUploadPreview.style.filter = `blur(${effectLevelValue.value}px)`;
-      });
+      updateEffects(0,3,0.1,3,'blur','px');
     }
 
     if (effect === 'heat') {
-      effectLevelContainer.noUiSlider.updateOptions({
-        range: {
-          'min': 0,
-          'max': 3,
-        },
-        step: 0.1,
-        start: 3,
-      });
-
-      effectLevelContainer.noUiSlider.on('update',(__,handle,unencoded) => {
-        effectLevelValue.value = unencoded[handle];
-        imgUploadPreview.style.filter = `brightness(${effectLevelValue.value})`;
-      });
+      updateEffects(0,3,0.1,3,'brightness','');
     }
 
     if (effect === 'none') {
