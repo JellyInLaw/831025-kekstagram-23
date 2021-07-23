@@ -102,13 +102,13 @@ const closeImgUpload = function () {
   resetInputValue();
 };
 
-const pressEsc = function (evt) {
+const pressEscHandler = function (evt) {
   if (isEsc(evt) && isActiveElement(document.activeElement)) {
     evt.preventDefault();
     imgUploadOverlay.classList.add('hidden');
     body.classList.remove('modal-open');
     imgUploadClose.removeEventListener('click',closeImgUpload);
-    document.removeEventListener('keydown',pressEsc);
+    document.removeEventListener('keydown',pressEscHandler);
     textHashtags.removeEventListener('input',validateHashtag);
     scaleControlBigger.removeEventListener('click',scaleControlBiggerHandler);
     scaleControlSmaller.removeEventListener('click',scaleControlSmallerHandler);
@@ -120,7 +120,7 @@ const openUploadForm = function () {
   imgUploadOverlay.classList.remove('hidden');
   body.classList.add('modal-open');
   imgUploadClose.addEventListener('click',closeImgUpload);
-  document.addEventListener('keydown',pressEsc);
+  document.addEventListener('keydown',pressEscHandler);
   textHashtags.addEventListener('input',validateHashtag);
   resize();
 };
