@@ -1,3 +1,5 @@
+https://jellyinlaw.github.io/831025-kekstagram-23/
+
 # Личный проект «Кекстаграм»
 
 - Студент: [Максим Шашурин](https://up.htmlacademy.ru/javascript/23/user/831025).
